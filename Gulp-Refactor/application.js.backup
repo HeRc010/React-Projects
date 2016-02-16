@@ -1,0 +1,59 @@
+// Instance Parameters
+var parameters = {
+    parameterList: [{
+        imageUrl: "https://facebook.github.io/react/img/logo_og.png",
+        header: "React shenanigans",
+        description: "React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome.",
+        title: "Tast",
+        count: 5
+    }, {
+        imageUrl: "https://facebook.github.io/flux/img/flux_logo.svg",
+        header: "Flux is da bomb",
+        description: "Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability.",
+        title: "Tast",
+        count: 5
+    }]
+};
+
+// Create Instance
+var thumbnailList = React.createElement(ThumbnailList, parameters);
+
+// Render Instance
+React.render(thumbnailList, document.querySelector('.container'));
+
+var Badge = React.createClass({displayName: "Badge",
+    render: function() {
+        return React.createElement("button", {className: "btn btn-primary", type: "button"}, 
+            this.props.title, " ", React.createElement("span", {className: "badge"}, this.props.count)
+        )
+    }
+});
+
+var ThumbnailList = React.createClass({displayName: "ThumbnailList",
+    render: function() {
+        var list = this.props.parameterList.map(function(parameters) {
+            return React.createElement(Thumbnail, React.__spread({},  parameters))
+        });
+
+        return React.createElement("div", null, 
+            list
+        )
+    }
+});
+
+var Thumbnail = React.createClass({displayName: "Thumbnail",
+    render: function() {
+        return React.createElement("div", {className: "col-sm-6 col-md-4"}, 
+            React.createElement("div", {className: "thumbnail"}, 
+                React.createElement("img", {src: this.props.imageUrl}), 
+                React.createElement("div", {className: "caption"}, 
+                    React.createElement("h3", null, this.props.header), 
+                    React.createElement("p", null, this.props.description), 
+                    React.createElement("p", null, 
+                        React.createElement(Badge, {title: this.props.title, count: this.props.count})
+                    )
+                )
+            )
+        )
+    }
+});

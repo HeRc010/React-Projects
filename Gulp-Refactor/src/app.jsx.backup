@@ -1,0 +1,25 @@
+var React = require('react');
+var ThumbnailList = require('./thumbnail-list');
+
+// Instance Parameters
+var parameters = {
+    parameterList: [{
+        imageUrl: "https://facebook.github.io/react/img/logo_og.png",
+        header: "React shenanigans",
+        description: "React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome.",
+        title: "Tast",
+        count: 5
+    }, {
+        imageUrl: "https://facebook.github.io/flux/img/flux_logo.svg",
+        header: "Flux is da bomb",
+        description: "Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability.",
+        title: "Tast",
+        count: 5
+    }]
+};
+
+// Create Instance
+var thumbnailList = React.createElement(ThumbnailList, parameters);
+
+// Render Instance
+React.render(thumbnailList, document.querySelector('.container'));

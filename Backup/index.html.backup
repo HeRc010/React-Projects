@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Ma first React + Flux App
+    </title>
+
+    <!-- Scripts -->
+    <script src="http://fb.me/react-0.13.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.13.0.js"></script>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Content -->
+    <div class="container">
+        <!-- <div class="row">
+            <div class="col-sm-5 target">
+            </div>
+        </div> -->
+    </div>
+</body>
+
+<script type="text/jsx">
+    var Badge = React.createClass({
+        render: function() {
+            return <button className="btn btn-primary" type="button">
+                {this.props.title} <span className="badge">{this.props.count}</span>
+            </button>
+        }
+    });
+
+    var Thumbnail = React.createClass({
+        render: function() {
+            return <div className="thumbnail">
+                <img src={this.props.imageUrl}></img>
+                <div className="caption">
+                    <h3>{this.props.header}</h3>
+                    <p>{this.props.description}</p>
+                    <p>
+                        <Badge title={this.props.title} count={this.props.count} />
+                    </p>
+                </div>
+            </div>
+        }
+    });
+
+    var ThumbnailList = React.createClass({
+        render: function() {
+            var list = this.props.parameterList.map(function(parameters) {
+                return <Thumbnail {...parameters} />
+            });
+
+            return <div>
+                {list}
+            </div>
+        }
+    });
+
+    // Instance Parameters
+    var parameters = {
+        parameterList: [{
+            imageUrl: "https://facebook.github.io/react/img/logo_og.png",
+            header: "React shenanigans",
+            description: "React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome. React is fast and super awesome.",
+            title: "Tast",
+            count: 5
+        }, {
+            imageUrl: "https://facebook.github.io/flux/img/flux_logo.svg",
+            header: "Flux is da bomb",
+            description: "Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability. Flux is a badass architecture pattern design to maximize readability and maintainability.",
+            title: "Tast",
+            count: 5
+        }]
+    };
+
+    var thumbnailList = React.createElement(ThumbnailList, parameters);
+
+    React.render(thumbnailList, document.querySelector('.container'));
+</script>
